@@ -1,0 +1,19 @@
+div.grid-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table{
+  margin: auto;
+  border-collapse: collapse;
+}
+td.cell{
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+}
+td.cell.visited{
+  background-color:yellow;
+}

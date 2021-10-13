@@ -13,16 +13,12 @@ export default class Cell extends Component {
     componentDidMount = ()=>{
         this.setState({x:this.props.x});
         this.setState({y:this.props.y});
-        // this.setState({visited:this.props.visited});
-    }
-    handleVisited = ()=>{
-        // this.setState({visited: this.props.visited});
     }
     render() {
-        let classes = {vis: "visited cell", notvis:"cell"};
-        let {visited} = this.props;
+        let classes = {vis: "visited cell", notvis:"cell", blk: "cell blocked"};
+        let {value} = this.props;
         return (
-        <div className={visited?classes.vis:classes.notvis} onClick={this.props.onClick1}>
+            <div className={`${value==1?classes.vis:`${value==2?classes.blk:classes.notvis}`}`} onClick={this.props.onClick1}>
                 
             </div>
         )

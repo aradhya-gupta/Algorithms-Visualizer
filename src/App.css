@@ -42,6 +42,9 @@ div.cell.visited{
   animation-name: example;
   animation-duration: 2s;
 }
+div.cell.blocked{
+  background-color: purple;
+}
 div.row{
   display: flex;
 }

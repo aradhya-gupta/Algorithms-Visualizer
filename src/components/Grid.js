@@ -23,13 +23,13 @@ export default class Grid extends Component {
 		this.setState({grid:matrix});
 	}
 	bfs = (x, y) => {
-
+		let matrix = this.state.grid;
 		var ROW = 25;
 		var COL = 40;
 		var dRow = [-1, 0, 1, 0 ];
 		var dCol = [0, 1, 0, -1 ];
 		function isValid(vis, row, col){
-			if (row < 0 || col < 0 || row >= ROW || col >= COL)
+			if (row < 0 || col < 0 || row >= ROW || col >= COL || matrix[row][col]==2)
 				return false;
 			if (vis[row][col])
 				return false;
@@ -97,7 +97,7 @@ export default class Grid extends Component {
 			<div className="grid-container">
 				<div>
 					{grid.map((row, x) => 
-						<div key={x} className="row">{row.map((col, y) => <Cell key={x*cols+y} x={x} y={y} visited={grid[x][y]} onClick1={()=> this.handleCellChange1(x, y)} />)}</div>
+						<div key={x} className="row">{row.map((col, y) => <Cell key={x*cols+y} x={x} y={y} value={grid[x][y]} onClick1={()=> this.handleCellChange(x, y, 2)} />)}</div>
 						)}
 				</div>
 				<button onClick={() => this.bfs(12,20)}>bfs</button>

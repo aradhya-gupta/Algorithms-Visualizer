@@ -18,8 +18,7 @@ export default class Cell extends Component {
         let classes = {vis: "visited cell", notvis:"cell", blk: "cell blocked"};
         let {value} = this.props;
         return (
-            <div className={`${value==1?classes.vis:`${value==2?classes.blk:classes.notvis}`}`} onClick={this.props.onClick1}>
-                
+            <div className={`${value===1?classes.vis:`${value===2?classes.blk:classes.notvis}`}`} onClick={this.props.onClick1} /*onMouseEnter={this.props.onMouseEnter}*/ >
             </div>
         )
     }

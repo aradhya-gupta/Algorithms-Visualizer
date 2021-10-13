@@ -38,51 +38,90 @@ export default class Grid extends Component {
 				matrix[i][j] = 0; 
 		this.setState({grid: matrix});
 	}
-	startBFS = () => {
+	start = () => {
 		this.setState({stop:0});
 	}
 	bfs = (x, y) => {
-		this.startBFS();
+		this.start();
 		let matrix = this.state.grid;
-		if(matrix[x][y]!==2){
-			var ROW = 25;
-			var COL = 40;
-			var dRow = [-1, 0, 1, 0 ];
-			var dCol = [0, 1, 0, -1 ];
-			function isValid(vis, row, col){
-				if (row < 0 || col < 0 || row >= ROW || col >= COL || matrix[row][col]===2)
-					return false;
-				if (vis[row][col])
-					return false;
-				return true;
-			}
-			var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
-			var row = x, col = y;
-			var q = [];
-			q.push([row, col]);
-			vis[row][col] = true;
-			let t = setInterval(()=>{
-				var len = q.length;
-				let st = this.state.stop;
-				while(len--){
-					var cell = q[0];
-					var x = cell[0];
-					var y = cell[1];
-					this.handleCellChange(x, y, 1);
-					q.shift();
-					for (var i = 0; i < 4; i++) {
-						var adjx = x + dRow[i];
-						var adjy = y + dCol[i];
-						if (isValid(vis, adjx, adjy)) {
-							q.push([adjx, adjy ]);
-							vis[adjx][adjy] = true;
-						}
+		if(matrix[x][y]===2)
+			return;
+		var ROW = 25;
+		var COL = 40;
+		var dRow = [-1, 0, 1, 0 ];
+		var dCol = [0, 1, 0, -1 ];
+		function isValid(vis, row, col){
+			if (row < 0 || col < 0 || row >= ROW || col >= COL || matrix[row][col]===2)
+				return false;
+			if (vis[row][col])
+				return false;
+			return true;
+		}
+		var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
+		var row = x, col = y;
+		var q = [];
+		q.push([row, col]);
+		vis[row][col] = true;
+		let t = setInterval(()=>{
+			var len = q.length;
+			let st = this.state.stop;
+			while(len--){
+				var cell = q[0];
+				var x = cell[0];
+				var y = cell[1];
+				this.handleCellChange(x, y, 1);
+				q.shift();
+				for (var i = 0; i < 4; i++) {
+					var adjx = x + dRow[i];
+					var adjy = y + dCol[i];
+					if (isValid(vis, adjx, adjy)) {
+						q.push([adjx, adjy ]);
+						vis[adjx][adjy] = true;
 					}
 				}
-				if(q.length===0 || st===1)
-					clearInterval(t);
-			}, 500);
+			}
+			if(q.length===0 || st===1)
+				clearInterval(t);
+		}, 500);
+	}
+	dfs = (x, y) => {
+		this.start();
+		let matrix = this.state.grid;
+		if(matrix[x][y]===2)
+			return;
+		var ROW = 25;
+		var COL = 40;
+		var dRow = [0, -1, 0, 1];
+		var dCol = [1, 0, -1, 0];
+		function isValid(vis, row, col){
+			if (row < 0 || col < 0 || row >= ROW || col >= COL || matrix[row][col]===2)
+				return false;
+			if (vis[row][col])
+				return false;
+			return true;
 		}
+		var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
+		var row = x, col = y;
+		var q = [];
+		q.push([row, col]);
+		vis[row][col] = true;
+		let t = setInterval(()=>{
+			let st = this.state.stop;
+			var cell = q.pop();
+			var x = cell[0];
+			var y = cell[1];
+			this.handleCellChange(x, y, 1);
+			for (var i = 0; i < 4; i++) {
+				var adjx = x + dRow[i];
+				var adjy = y + dCol[i];
+				if (isValid(vis, adjx, adjy)) {
+					q.push([adjx, adjy]);
+					vis[adjx][adjy] = true;
+				}
+			}
+			if(q.length===0 || st===1)
+				clearInterval(t);
+		}, 50);
 	}
 	render() {
 		let { grid, cols } = this.state;
@@ -94,6 +133,7 @@ export default class Grid extends Component {
 						)}
 				</div>
 				<button onClick={() => this.bfs(1,1)}>BFS</button>
+				<button onClick={() => this.dfs(5,5)}>DFS</button>
 				<button onClick={() => this.handleStop()}>Stop</button>
 				<button onClick={() => this.handleReset()}>Reset</button>
 			</div>

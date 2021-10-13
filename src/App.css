@@ -5,15 +5,43 @@ div.grid-container{
   align-items: center;
 }
 
-table{
+/* table{
   margin: auto;
   border-collapse: collapse;
 }
-td.cell{
+tr > td.cell:hover{
+  border: 2px solid green;
+  background-color: olive;
+}
+tr > td.cell{
   width: 15px;
   height: 15px;
   border: 1px solid black;
 }
 td.cell.visited{
   background-color:yellow;
+} */
+
+div.cell{
+  display: flex;
+  width: 15px;
+  height: 15px;
+  border: 1px solid black;
+}
+div.cell:hover{
+  border: 1px solid green;
+  background-color: olive;
+}
+@keyframes example {
+  from {background-color: rgb(25, 66, 2);}
+  to {background-color: yellow;}
+}
+
+div.cell.visited{
+  background-color: yellow;
+  animation-name: example;
+  animation-duration: 2s;
+}
+div.row{
+  display: flex;
 }

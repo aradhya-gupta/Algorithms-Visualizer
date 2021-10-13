@@ -4,7 +4,8 @@ export default class Cell extends Component {
     state={
         x:0,
         y:0,
-        visited:false,
+        val:0,
+        // visited:0,
         blocked:false,
         source:false,
         destination:false,
@@ -12,15 +13,18 @@ export default class Cell extends Component {
     componentDidMount = ()=>{
         this.setState({x:this.props.x});
         this.setState({y:this.props.y});
-        this.setState({visited:this.props.visited});
+        // this.setState({visited:this.props.visited});
+    }
+    handleVisited = ()=>{
+        // this.setState({visited: this.props.visited});
     }
     render() {
         let classes = {vis: "visited cell", notvis:"cell"};
-        let {visited} = this.state;
+        let {visited} = this.props;
         return (
-            <td className={visited?classes.vis:classes.notvis}>
+        <div className={visited?classes.vis:classes.notvis} onClick={this.props.onClick1}>
                 
-            </td>
+            </div>
         )
     }
 }

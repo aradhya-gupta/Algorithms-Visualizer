@@ -15,10 +15,21 @@ export default class Cell extends Component {
         this.setState({y:this.props.y});
     }
     render() {
-        let classes = {vis: "visited cell", notvis:"cell", blk: "cell blocked"};
-        let {value} = this.props;
+        let {value, source, destination} = this.props;
+        let classname = "cell";
+        if(value===1)
+            classname = "cell visited";
+        else if(value===2)
+            classname = "cell blocked";
+        else if(value===3)
+            classname = "cell path"
+        if(source)
+            classname = "cell source";
+        else if(destination)
+            classname = "cell destination";
         return (
-            <div className={`${value===1?classes.vis:`${value===2?classes.blk:classes.notvis}`}`} onClick={this.props.onClick1} /*onMouseEnter={this.props.onMouseEnter}*/ >
+            <div className={classname} onClick={this.props.onClick1} /*onMouseEnter={this.props.onMouseEnter}*/ >
+                {source?'S':destination?'D':""}
             </div>
         )
     }

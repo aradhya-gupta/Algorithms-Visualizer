@@ -24,26 +24,43 @@ td.cell.visited{
 
 div.cell{
   display: flex;
-  width: 15px;
-  height: 15px;
+  min-width: 18px;
+  min-height: 18px;
+  align-items: center;
+  justify-content: center;
   border: 1px solid black;
 }
 div.cell:hover{
-  border: 1px solid green;
-  background-color: olive;
+  border: 1px solid indianred;
+  background-color: purple;
 }
-@keyframes example {
+@keyframes traversal {
   from {background-color: rgb(25, 66, 2);}
   to {background-color: yellow;}
 }
-
+@keyframes pathFound {
+  from {background-color: rgb(2, 32, 99);}
+  to {background-color: rgb(255, 0, 128);}
+}
+div.cell.path{
+  animation-name: pathFound;
+  animation-duration: 0.1s;
+  background-color: rgb(255, 0, 128);
+}
 div.cell.visited{
   background-color: yellow;
-  animation-name: example;
+  animation-name: traversal;
   animation-duration: 2s;
 }
 div.cell.blocked{
   background-color: purple;
+}
+div.cell.source{
+  background-color: indianred;
+  color:indigo;
+}
+div.cell.destination{
+  background-color: indianred;
 }
 div.row{
   display: flex;

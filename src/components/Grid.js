@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Cell from './Cell';
-// import BFS from '../algorithms/BFS';
 export default class Grid extends Component {
 	state = {
 		stop: 0,
@@ -8,6 +7,10 @@ export default class Grid extends Component {
 		cols: 40,
 		grid: [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]],
+		sx: 15,
+		sy: 12,
+		dx: 24,
+		dy: 34,
 	}
 	handleCellChange = (x, y, val)=>{
 		let matrix = this.state.grid;
@@ -24,7 +27,7 @@ export default class Grid extends Component {
 		this.setState({grid:matrix});
 	}
 	handleMouseEnter = (e) => {
-		console.log(e);
+		// console.log(e.target);
 		// this.handleCellChange()
 	}
 	handleStop = () => {
@@ -44,6 +47,7 @@ export default class Grid extends Component {
 	bfs = (x, y) => {
 		this.start();
 		let matrix = this.state.grid;
+		let {dx, dy} = this.state;
 		if(matrix[x][y]===2)
 			return;
 		var ROW = 25;
@@ -58,6 +62,7 @@ export default class Grid extends Component {
 			return true;
 		}
 		var vis = Array.from(Array(ROW), ()=> Array(COL).fill(false));
+		var parent = Array.from(Array(ROW), ()=> Array(COL).fill(-1));
 		var row = x, col = y;
 		var q = [];
 		q.push([row, col]);
@@ -70,6 +75,26 @@ export default class Grid extends Component {
 				var x = cell[0];
 				var y = cell[1];
 				this.handleCellChange(x, y, 1);
+				if(x===dx && y===dy){
+					let path = [];
+					let temp = x*COL+y;
+					while(temp!==-1){
+						path.push(temp);
+						temp =  parent[Math.floor(temp/COL)][temp%COL];
+					}
+					path.reverse();
+					// console.log(path);
+					let index = 0; 
+					let tt = setInterval(()=>{
+						var xx = Math.floor(path[index]/COL), yy = path[index]%COL;
+						// console.log(xx, yy);
+						this.handleCellChange(xx, yy, 3);
+						index++;
+						if(index===path.length)
+							clearInterval(tt);
+					}, 90);
+					clearInterval(t);
+				}
 				q.shift();
 				for (var i = 0; i < 4; i++) {
 					var adjx = x + dRow[i];
@@ -77,12 +102,13 @@ export default class Grid extends Component {
 					if (isValid(vis, adjx, adjy)) {
 						q.push([adjx, adjy ]);
 						vis[adjx][adjy] = true;
+						parent[adjx][adjy] = x*COL+y;
 					}
 				}
 			}
 			if(q.length===0 || st===1)
 				clearInterval(t);
-		}, 500);
+		}, 90);
 	}
 	dfs = (x, y) => {
 		this.start();
@@ -124,16 +150,16 @@ export default class Grid extends Component {
 		}, 50);
 	}
 	render() {
-		let { grid, cols } = this.state;
+		let { grid, cols, sx, sy, dx, dy } = this.state;
 		return (
 			<div className="grid-container">
 				<div>
 					{grid.map((row, x) => 
-						<div key={x} className="row">{row.map((col, y) => <Cell key={x*cols+y} x={x} y={y} value={grid[x][y]} onClick1={()=> this.handleCellChange(x, y, 2)} onMouseEnter={this.handleMouseEnter}/>)}</div>
+						<div key={x} className="row">{row.map((col, y) => <Cell key={x*cols+y} x={x} y={y} value={grid[x][y]} onClick1={()=> this.handleCellChange(x, y, 2)} onMouseEnter={this.handleMouseEnter} destination={(x===dx && y===dy)?1:0} source={(x===sx && y===sy)?1:0}/>)}</div>
 						)}
 				</div>
-				<button onClick={() => this.bfs(1,1)}>BFS</button>
-				<button onClick={() => this.dfs(5,5)}>DFS</button>
+				<button onClick={() => this.bfs(sx,sy)}>BFS</button>
+				<button onClick={() => this.dfs(sx,sy)}>DFS</button>
 				<button onClick={() => this.handleStop()}>Stop</button>
 				<button onClick={() => this.handleReset()}>Reset</button>
 			</div>

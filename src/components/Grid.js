@@ -104,7 +104,7 @@ export default class Grid extends Component {
 						index++;
 						if (index === path.length)
 							clearInterval(tt);
-					}, 90);
+					}, 20);
 					clearInterval(t);
 				}
 				q.shift();
@@ -120,7 +120,7 @@ export default class Grid extends Component {
 			}
 			if (q.length === 0 || st === 1)
 				clearInterval(t);
-		}, 90);
+		}, 20);
 	}
 	dfs = (x, y) => {
 		this.start();
@@ -131,6 +131,7 @@ export default class Grid extends Component {
 		var COL = 40;
 		var dRow = [0, -1, 0, 1];
 		var dCol = [1, 0, -1, 0];
+		let { dx, dy } = this.state;
 		function isValid(vis, row, col) {
 			if (row < 0 || col < 0 || row >= ROW || col >= COL || matrix[row][col] === 2)
 				return false;
@@ -139,6 +140,7 @@ export default class Grid extends Component {
 			return true;
 		}
 		var vis = Array.from(Array(ROW), () => Array(COL).fill(false));
+		var parent = Array.from(Array(ROW), () => Array(COL).fill(-1));
 		var row = x, col = y;
 		var q = [];
 		q.push([row, col]);
@@ -149,12 +151,33 @@ export default class Grid extends Component {
 			var x = cell[0];
 			var y = cell[1];
 			this.handleCellChange(x, y, 1);
+			if (x === dx && y === dy) {
+				let path = [];
+				let temp = x * COL + y;
+				while (temp !== -1) {
+					path.push(temp);
+					temp = parent[Math.floor(temp / COL)][temp % COL];
+				}
+				path.reverse();
+				// console.log(path);
+				let index = 0;
+				let tt = setInterval(() => {
+					var xx = Math.floor(path[index] / COL), yy = path[index] % COL;
+					// console.log(xx, yy);
+					this.handleCellChange(xx, yy, 3);
+					index++;
+					if (index === path.length)
+						clearInterval(tt);
+				}, 20);
+				clearInterval(t);
+			}
 			for (var i = 0; i < 4; i++) {
 				var adjx = x + dRow[i];
 				var adjy = y + dCol[i];
 				if (isValid(vis, adjx, adjy)) {
 					q.push([adjx, adjy]);
 					vis[adjx][adjy] = true;
+					parent[adjx][adjy] = x * COL + y;
 				}
 			}
 			if (q.length === 0 || st === 1)

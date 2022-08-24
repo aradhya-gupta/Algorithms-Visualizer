@@ -3,24 +3,8 @@ div.grid-container{
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
-
-/* table{
-  margin: auto;
-  border-collapse: collapse;
-}
-tr > td.cell:hover{
-  border: 2px solid green;
-  background-color: olive;
-}
-tr > td.cell{
-  width: 15px;
-  height: 15px;
-  border: 1px solid black;
-}
-td.cell.visited{
-  background-color:yellow;
-} */
 
 div.cell{
   display: flex;

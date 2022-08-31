@@ -1,12 +1,13 @@
-div.grid-container{
+div.grid-container {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-color:aqua;
 }
 
-div.cell{
+div.cell {
   display: flex;
   min-width: 18px;
   min-height: 18px;
@@ -14,38 +15,74 @@ div.cell{
   justify-content: center;
   border: 1px solid black;
 }
-div.cell:hover{
+div.cell:hover {
   border: 1px solid indianred;
   background-color: purple;
 }
+div.input-div { 
+  flex: 1;
+  margin: 4px; 
+}
+div.input-div label {
+  margin: 4px; 
+}
+div.input-div input {
+  margin: 4px; 
+}
+div.buttons-row {
+  /* width: 100vw; */
+  background-color: pink;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+}
+.algo-button {
+  margin: 5px;
+}
+.action-button {
+  margin: 5px; 
+}
 @keyframes traversal {
-  from {background-color: rgb(25, 66, 2);}
-  to {background-color: yellow;}
+  from {
+    background-color: rgb(25, 66, 2);
+  }
+  to {
+    background-color: yellow;
+  }
 }
 @keyframes pathFound {
-  from {background-color: rgb(2, 32, 99);}
-  to {background-color: rgb(255, 0, 128);}
+  from {
+    background-color: rgb(2, 32, 99);
+  }
+  to {
+    background-color: rgb(255, 0, 128);
+  }
 }
-div.cell.path{
+div.cell.path {
   animation-name: pathFound;
   animation-duration: 0.1s;
   background-color: rgb(255, 0, 128);
 }
-div.cell.visited{
+div.cell.looked {
+  background-color: lightgray;
+  /* animation-name: traversal;
+  animation-duration: 2s; */
+}
+div.cell.visited {
   background-color: yellow;
   animation-name: traversal;
   animation-duration: 2s;
 }
-div.cell.blocked{
+div.cell.blocked {
   background-color: purple;
 }
-div.cell.source{
+div.cell.source {
   background-color: indianred;
-  color:indigo;
+  color: indigo;
 }
-div.cell.destination{
+div.cell.destination {
   background-color: indianred;
 }
-div.row{
+div.row {
   display: flex;
 }

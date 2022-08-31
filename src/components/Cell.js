@@ -23,6 +23,8 @@ export default class Cell extends Component {
             classname = "cell blocked";
         else if(value===3)
             classname = "cell path"
+        else if(value===4)
+            classname = "cell looked"
         if(source)
             classname = "cell source";
         else if(destination)
